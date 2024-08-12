@@ -5,20 +5,24 @@ import './index.css'
 function App() {
   useEffect(() => {
     const intervalId = setInterval(() => {
-      const matrixColumns = document.querySelectorAll<HTMLDivElement>('.matrix-column');
-      matrixColumns.forEach((column) => {
+      const matrixLines = document.querySelectorAll<HTMLDivElement>('.matrix-line');
+      matrixLines.forEach((line) => {
         const text = String.fromCharCode(0x30A0 + Math.random() * 96);
-        column.innerText = text;
+        line.innerText = text;
       });
     }, 50);
 
-    return () => clearInterval(intervalId); // Cleanup interval on unmount
+    return () => clearInterval(intervalId);
   }, []);
 
   return (
     <div className="matrix-bg">
-      {Array.from({ length: Math.floor(window.innerWidth / 20) }).map((_, index) => (
-        <div key={index} className="matrix-column" style={{ left: `${index * 20}px` }}>|</div>
+      {Array.from({ length: Math.floor(window.innerWidth / 20) }).map((_, columnIndex) => (
+        <div key={columnIndex} className="matrix-column" style={{ left: `${columnIndex * 20}px` }}>
+          {Array.from({ length: 20 }).map((_, lineIndex) => (
+            <div key={lineIndex} className="matrix-line">|</div>
+          ))}
+        </div>
       ))}
     </div>
   );
