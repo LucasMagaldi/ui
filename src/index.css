@@ -30,6 +30,13 @@ body {
   font-family: monospace;
   text-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
   white-space: nowrap;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.matrix-bg .matrix-line {
+  animation: matrix 5s infinite linear;
 }
 
 @keyframes matrix {
@@ -37,6 +44,6 @@ body {
     transform: translateY(0);
   }
   100% {
-    transform: translateY(300%);
+    transform: translateY(200%);
   }
 }
